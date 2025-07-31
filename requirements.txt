@@ -1,0 +1,10 @@
+flask
+requests
+python-dotenv
+google-generativeai
+matplotlib
+Pillow
+seaborn
+reportlab
+opencv-python
+gunicorn

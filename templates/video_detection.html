@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Detection - TruthShield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video_styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='/'">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                <h1>Truth<span>Shield</span></h1>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="active">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/image-detection" class="dropdown-item ">
+                            <i class="fas fa-image icon-styled"></i>
+                            <div class="dropdown-text">
+                                <h4>Image Analysis</h4>
+                                <p>Identify manipulated images</p>
+                            </div>
+                        </a>
+                        <a href="/video-detection" class="dropdown-item active">
+                            <i class="fas fa-video icon-styled"></i>
+                            <div class="dropdown-text">
+                                <h4>Video Analysis</h4>
+                                <p>Detect deepfake videos</p>
+                            </div>
+                        </a>
+                        <a href="http://localhost:3001/" class="dropdown-item" target="_blank">
+                            <i class="fas fa-newspaper icon-styled"></i>
+                            <div class="dropdown-text">
+                                <h4>Text Analysis</h4>
+                                <p>Detect fake news and misinformation</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="cta-nav">
+                <a href="login.html" class="login-button">Log In</a>
+                <a href="signup.html" class="signup-button">Sign Up</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="header-text">
+                    <h1>Video Deepfake Detection</h1>
+                    <p>Upload videos to analyze frame-by-frame for deepfake manipulation with comprehensive reporting</p>
+                </div>
+            </div>
+            
+            <div class="stats-panel">
+                <div class="stat">
+                    <span class="stat-number" id="accuracy-stat">0%</span>
+                    <span class="stat-label">Detection Accuracy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="videos-stat">0M+</span>
+                    <span class="stat-label">Videos Analyzed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="time-stat">0s</span>
+                    <span class="stat-label">Average Processing Time</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="detection-panel glass-card">
+                <div class="panel-tabs">
+                    <button class="tab-btn active" data-tab="upload">
+                        <i class="fas fa-upload"></i> Upload Video
+                    </button>
+                    <button class="tab-btn" data-tab="history">
+                        <i class="fas fa-history"></i> History
+                    </button>
+                </div>
+
+                <div class="panel-content">
+                    <!-- Video Upload Tab -->
+                    <div class="tab-content active" id="upload-tab">
+                        <div class="upload-container">
+                            <div class="upload-area" id="video-drop-area">
+                                <input type="file" id="videoInput" accept="video/*" hidden>
+                                <div class="upload-icon">
+                                    <i class="fas fa-film"></i>
+                                </div>
+                                <h3>Drag & Drop Your Video</h3>
+                                <p>or</p>
+                                <button class="btn primary" id="browse-video-btn">Browse Files</button>
+                                <div class="file-info" id="video-file-info"></div>
+                                
+                                <div class="supported-formats">
+                                    <p>Supported formats: MP4, AVI, MOV, MKV (Max 100MB)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upload-info">
+                                <h3><i class="fas fa-info-circle"></i> Video Analysis</h3>
+                                <div class="info-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Upload a Video</h4>
+                                        <p>Select or drag & drop any video you want to analyze</p>
+                                    </div>
+                                </div>
+                                <div class="info-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Frame Extraction</h4>
+                                        <p>Our system extracts key frames from your video for analysis</p>
+                                    </div>
+                                </div>
+                                <div class="info-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Frame-by-Frame Analysis</h4>
+                                        <p>Each frame is analyzed for deepfake indicators</p>
+                                    </div>
+                                </div>
+                                <button class="btn primary full-width" id="upload-video-btn" disabled>
+                                    <i class="fas fa-search"></i> Analyze Video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- History Tab -->
+                    <div class="tab-content" id="history-tab">
+                        <div class="history-container">
+                            <div class="history-header">
+                                <h3><i class="fas fa-history"></i> Your Video Analysis History</h3>
+                                <button class="btn secondary small" id="clear-history">
+                                    <i class="fas fa-trash"></i> Clear History
+                                </button>
+                            </div>
+                            <div class="history-list" id="history-list">
+                                <div class="empty-history">
+                                    <i class="fas fa-history"></i>
+                                    <p>Your video analysis history will appear here</p>
+                                    <p class="empty-subtext">Results are stored locally on your device</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Results Container -->
+            <div class="results-container glass-card" id="video-results-container">
+                <div class="results-header">
+                    <h2><i class="fas fa-film"></i> Video Analysis Results</h2>
+                    <button class="close-btn" id="close-video-results">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="results-content">
+                    <div class="result-summary">
+                        <div class="result-verdict" id="video-result-verdict">
+                            <!-- Will be filled by JS -->
+                        </div>
+                        <div class="confidence-meter">
+                            <h3>Overall Confidence Level</h3>
+                            <div class="meter-container">
+                                <div class="meter-bar">
+                                    <div class="meter-fill" id="video-confidence-meter"></div>
+                                </div>
+                                <div class="meter-value" id="video-confidence-value">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-preview-section">
+                        <h3><i class="fas fa-play-circle"></i> Analyzed Video</h3>
+                        <div class="video-player-container">
+                            <video id="video-preview" class="video-player" controls playsinline></video>
+                            <div class="video-controls-overlay">
+                                <button class="btn icon-only" id="fullscreen-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="frame-analysis">
+                        <h3><i class="fas fa-images"></i> Frame-by-Frame Analysis</h3>
+                        <div class="frames-container" id="frames-container">
+                            <!-- Will be filled by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="result-explanation-container">
+                        <h3><i class="fas fa-info-circle"></i> What This Means</h3>
+                        <div class="result-explanation" id="video-result-explanation">
+                            <!-- Will be filled by JS -->
+                        </div>
+                        <div class="result-actions">
+                            <button class="btn secondary" id="save-video-result">
+                                <i class="fas fa-save"></i> Save to History
+                            </button>
+                            <button class="btn primary" id="share-video-result">
+                                <i class="fas fa-share-alt"></i> Share Results
+                            </button>
+                            <button class="btn outline" id="download-report">
+                                <i class="fas fa-file-download"></i> Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loader">
+            <div class="scan-animation">
+                <div class="scan-line"></div>
+            </div>
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+        <p class="loading-text">Analyzing video with AI...</p>
+        <div class="loading-stats">
+            <div class="loading-stat">
+                <span class="loading-label">Extracting frames</span>
+                <div class="loading-progress">
+                    <div class="loading-bar" id="progress-1"></div>
+                </div>
+            </div>
+            <div class="loading-stat">
+                <span class="loading-label">Analyzing content</span>
+                <div class="loading-progress">
+                    <div class="loading-bar" id="progress-2"></div>
+                </div>
+            </div>
+            <div class="loading-stat">
+                <span class="loading-label">Processing results</span>
+                <div class="loading-progress">
+                    <div class="loading-bar" id="progress-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="toast-content">
+            <p id="toast-message"></p>
+        </div>
+        <button class="toast-close" id="toast-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2>Truth<span>Shield</span></h2>
+                    </div>
+                    <p>Protecting truth in the digital age with advanced AI-powered deepfake detection.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Solutions</h3>
+                    <a href="#">Image Verification</a>
+                    <a href="#">Video Authentication</a>
+                    <a href="#">Text Analysis</a>
+                    <a href="#">API Integration</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press Kit</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="#">Blog</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on deepfake detection technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Truth Shield, Inc. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-timestamp">2025-06-24 00:14:12 by varunkumarcs22055</div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/video_detection.js') }}"></script>
+</body>
+</html>

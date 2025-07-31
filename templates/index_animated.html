@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INDsafe.ai - India's AI Shield Against Deepfakes. Advanced AI-powered deepfake detection for images, videos, audio, and text to protect digital truth">
+    <title>INDsafe.ai - Futuristic Deepfake Detection Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <!-- Futuristic Navigation -->
+    <nav class="futuristic-navbar">
+        <div class="nav-container">
+            <div class="logo-section" onclick="window.location.href='/'">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-virus"></i>
+                    <div class="logo-pulse-rings">
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                    </div>
+                </div>
+                <span class="logo-text">INDsafe.ai</span>
+                <div class="logo-status">
+                    <span class="status-dot"></span>
+                    <span>ONLINE</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-item active">
+                    <span>Home</span>
+                    <div class="nav-particle"></div>
+                </a>
+                <a href="#detection" class="nav-item">
+                    <span>Detection</span>
+                    <div class="nav-particle"></div>
+                </a>
+                <a href="#analytics" class="nav-item">
+                    <span>Analytics</span>
+                    <div class="nav-particle"></div>
+                </a>
+                <a href="#about" class="nav-item">
+                    <span>About</span>
+                    <div class="nav-particle"></div>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="futuristic-btn secondary" id="scanAllBtn">
+                    <i class="fas fa-search"></i>
+                    <span>Global Scan</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="futuristic-btn primary">
+                    <i class="fas fa-rocket"></i>
+                    <span>Launch AI</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero Section with Floating Effect -->
+        <section class="hero-section floating" id="home">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <div class="badge-glow"></div>
+                    <span class="status-indicator"></span>
+                    <span>AI DEFENSE MATRIX ACTIVE</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="glitch-text" data-text="INDsafe.ai">INDsafe.ai</span><br>
+                    <span class="gradient-text">Deepfake Guardian</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Next-generation AI platform that detects synthetic media across images, videos, audio, and text with quantum-level precision and real-time analysis.
+                </p>
+
+                <!-- Real-time Counters -->
+                <div class="stats-counter">
+                    <div class="counter-item">
+                        <div class="counter-number" data-target="1247">0</div>
+                        <div class="counter-label">Fake Content Detected Today</div>
+                        <div class="counter-glow"></div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-number" data-target="89">0</div>
+                        <div class="counter-label">Active Scans</div>
+                        <div class="counter-glow"></div>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="neon-btn primary" onclick="startGlobalScan()">
+                        <i class="fas fa-play"></i>
+                        <span>Start Detection</span>
+                        <div class="btn-waves"></div>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <button class="neon-btn secondary">
+                        <i class="fas fa-download"></i>
+                        <span>Download Report</span>
+                        <div class="btn-waves"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Animated AI Brain -->
+            <div class="ai-brain-container">
+                <div class="ai-brain">
+                    <div class="brain-core">
+                        <div class="core-center"></div>
+                        <div class="neural-network">
+                            <div class="neuron" style="--delay: 0s"></div>
+                            <div class="neuron" style="--delay: 0.5s"></div>
+                            <div class="neuron" style="--delay: 1s"></div>
+                            <div class="neuron" style="--delay: 1.5s"></div>
+                        </div>
+                    </div>
+                    <div class="scanning-beam"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detection Modules Section -->
+        <section class="detection-modules-section" id="detection">
+            <div class="section-header">
+                <h2 class="section-title">AI Detection Modules</h2>
+                <p class="section-subtitle">Advanced multi-modal analysis powered by quantum neural networks</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Image Detection Module -->
+                <div class="detection-module image-module" data-aos="fade-up" data-aos-delay="100">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-image"></i>
+                            <div class="icon-circuit"></div>
+                        </div>
+                        <h3>Image Detection</h3>
+                        <div class="module-status">
+                            <span class="status-dot active"></span>
+                            <span>READY</span>
+                        </div>
+                    </div>
+
+                    <div class="module-content">
+                        <div class="upload-zone" onclick="triggerImageUpload()">
+                            <div class="upload-animation">
+                                <div class="upload-circle"></div>
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <p>Drop image or click to upload</p>
+                            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                        </div>
+
+                        <div class="scan-visualization" id="imageScanViz" style="display: none;">
+                            <div class="scan-grid">
+                                <div class="grid-cell" data-index="0"></div>
+                                <div class="grid-cell" data-index="1"></div>
+                                <div class="grid-cell" data-index="2"></div>
+                                <div class="grid-cell" data-index="3"></div>
+                                <div class="grid-cell" data-index="4"></div>
+                                <div class="grid-cell" data-index="5"></div>
+                                <div class="grid-cell" data-index="6"></div>
+                                <div class="grid-cell" data-index="7"></div>
+                                <div class="grid-cell" data-index="8"></div>
+                            </div>
+                            <div class="circuit-lines">
+                                <div class="circuit-line horizontal"></div>
+                                <div class="circuit-line vertical"></div>
+                            </div>
+                        </div>
+
+                        <div class="result-panel" id="imageResult" style="display: none;">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="result-text">
+                                    <span class="result-status">AUTHENTIC</span>
+                                    <span class="confidence">97.8% Confidence</span>
+                                </div>
+                            </div>
+                            <div class="heatmap-overlay">
+                                <div class="heatmap-legend">
+                                    <span>Low Risk</span>
+                                    <div class="heatmap-bar"></div>
+                                    <span>High Risk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-glow"></div>
+                </div>
+
+                <!-- Video Detection Module -->
+                <div class="detection-module video-module" data-aos="fade-up" data-aos-delay="200">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-video"></i>
+                            <div class="icon-circuit"></div>
+                        </div>
+                        <h3>Video Detection</h3>
+                        <div class="module-status">
+                            <span class="status-dot active"></span>
+                            <span>READY</span>
+                        </div>
+                    </div>
+
+                    <div class="module-content">
+                        <div class="upload-zone" onclick="triggerVideoUpload()">
+                            <div class="upload-animation">
+                                <div class="upload-circle"></div>
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <p>Drag & drop video file</p>
+                            <input type="file" id="videoUpload" accept="video/*" style="display: none;">
+                        </div>
+
+                        <div class="scan-visualization" id="videoScanViz" style="display: none;">
+                            <div class="video-timeline">
+                                <div class="frame-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"></div>
+                                    </div>
+                                    <div class="frame-markers">
+                                        <div class="frame-marker" data-frame="1"></div>
+                                        <div class="frame-marker" data-frame="2"></div>
+                                        <div class="frame-marker" data-frame="3"></div>
+                                        <div class="frame-marker" data-frame="4"></div>
+                                        <div class="frame-marker" data-frame="5"></div>
+                                    </div>
+                                </div>
+                                <div class="scan-beam"></div>
+                            </div>
+                        </div>
+
+                        <div class="result-panel" id="videoResult" style="display: none;">
+                            <div class="confidence-meter">
+                                <div class="meter-circle">
+                                    <div class="meter-progress" data-confidence="94"></div>
+                                    <div class="meter-text">
+                                        <span class="percentage">94%</span>
+                                        <span class="label">AUTHENTIC</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame-analysis">
+                                <span>Frame-by-frame analysis complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-glow"></div>
+                </div>
+
+                <!-- Audio Detection Module -->
+                <div class="detection-module audio-module" data-aos="fade-up" data-aos-delay="300">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-microphone"></i>
+                            <div class="icon-circuit"></div>
+                        </div>
+                        <h3>Audio Detection</h3>
+                        <div class="module-status">
+                            <span class="status-dot inactive"></span>
+                            <span>COMING SOON</span>
+                        </div>
+                    </div>
+
+                    <div class="module-content">
+                        <div class="upload-zone disabled">
+                            <div class="upload-animation">
+                                <div class="upload-circle"></div>
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <p>Audio analysis module</p>
+                        </div>
+
+                        <div class="waveform-container">
+                            <div class="waveform">
+                                <div class="wave-bar" style="--height: 20%; --delay: 0s"></div>
+                                <div class="wave-bar" style="--height: 60%; --delay: 0.1s"></div>
+                                <div class="wave-bar" style="--height: 40%; --delay: 0.2s"></div>
+                                <div class="wave-bar" style="--height: 80%; --delay: 0.3s"></div>
+                                <div class="wave-bar" style="--height: 30%; --delay: 0.4s"></div>
+                                <div class="wave-bar" style="--height: 70%; --delay: 0.5s"></div>
+                                <div class="wave-bar" style="--height: 50%; --delay: 0.6s"></div>
+                                <div class="wave-bar" style="--height: 90%; --delay: 0.7s"></div>
+                            </div>
+                            <div class="spectrogram">
+                                <div class="frequency-bands">
+                                    <div class="freq-band"></div>
+                                    <div class="freq-band anomaly"></div>
+                                    <div class="freq-band"></div>
+                                    <div class="freq-band"></div>
+                                    <div class="freq-band anomaly"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-glow disabled"></div>
+                </div>
+
+                <!-- Text/News Detection Module -->
+                <div class="detection-module text-module" data-aos="fade-up" data-aos-delay="400">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-newspaper"></i>
+                            <div class="icon-circuit"></div>
+                        </div>
+                        <h3>Text/News Detection</h3>
+                        <div class="module-status">
+                            <span class="status-dot inactive"></span>
+                            <span>COMING SOON</span>
+                        </div>
+                    </div>
+
+                    <div class="module-content">
+                        <div class="text-input-zone disabled">
+                            <textarea placeholder="Paste text or enter news URL for analysis..." disabled></textarea>
+                            <div class="input-glow"></div>
+                        </div>
+
+                        <div class="text-analysis">
+                            <div class="text-sample">
+                                <p>Sample news analysis:</p>
+                                <div class="analyzed-text">
+                                    "The recent <span class="highlight fake">breakthrough in quantum computing</span> has revolutionized 
+                                    <span class="highlight real">artificial intelligence</span> capabilities, leading to 
+                                    <span class="highlight fake">unprecedented advances</span> in deepfake detection."
+                                </div>
+                            </div>
+                            <div class="analysis-tags">
+                                <div class="tag fake">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>Misleading Claims</span>
+                                </div>
+                                <div class="tag real">
+                                    <i class="fas fa-check"></i>
+                                    <span>Verified Facts</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-glow disabled"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Scan Beam Effect -->
+        <div class="global-scan-beam" id="globalScanBeam" style="display: none;">
+            <div class="beam-line"></div>
+            <div class="beam-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+
+        <!-- Analytics Dashboard -->
+        <section class="analytics-section" id="analytics">
+            <div class="analytics-header">
+                <h2 class="section-title">Real-time Analytics</h2>
+                <div class="analytics-controls">
+                    <button class="control-btn active">Live</button>
+                    <button class="control-btn">24H</button>
+                    <button class="control-btn">7D</button>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="analytics-card threat-level">
+                    <div class="card-header">
+                        <h3>Threat Level</h3>
+                        <div class="threat-indicator">
+                            <div class="threat-circle low">
+                                <span>LOW</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="threat-radar">
+                        <div class="radar-sweep"></div>
+                        <div class="radar-blips">
+                            <div class="blip" style="--x: 30%; --y: 40%"></div>
+                            <div class="blip" style="--x: 70%; --y: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-card detection-chart">
+                    <div class="card-header">
+                        <h3>Detection Accuracy</h3>
+                        <span class="accuracy-percentage">97%</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="analytics-card system-status">
+                    <div class="card-header">
+                        <h3>System Health</h3>
+                    </div>
+                    <div class="status-metrics">
+                        <div class="metric">
+                            <span class="metric-label">CPU</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="--width: 45%"></div>
+                            </div>
+                            <span class="metric-value">45%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Memory</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="--width: 68%"></div>
+                            </div>
+                            <span class="metric-value">68%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GPU</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="--width: 82%"></div>
+                            </div>
+                            <span class="metric-value">82%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="matrix-rain">
+            <div class="matrix-column" style="--delay: 0s; --duration: 3s"></div>
+            <div class="matrix-column" style="--delay: 1s; --duration: 4s"></div>
+            <div class="matrix-column" style="--delay: 2s; --duration: 5s"></div>
+            <div class="matrix-column" style="--delay: 3s; --duration: 3.5s"></div>
+            <div class="matrix-column" style="--delay: 4s; --duration: 4.5s"></div>
+        </div>
+        
+        <div class="floating-particles">
+            <div class="particle-glow" style="--x: 10%; --y: 20%; --delay: 0s"></div>
+            <div class="particle-glow" style="--x: 80%; --y: 60%; --delay: 2s"></div>
+            <div class="particle-glow" style="--x: 30%; --y: 80%; --delay: 4s"></div>
+            <div class="particle-glow" style="--x: 70%; --y: 10%; --delay: 6s"></div>
+        </div>
+
+        <div class="neural-grid">
+            <div class="grid-lines">
+                <div class="grid-line horizontal" style="--y: 20%"></div>
+                <div class="grid-line horizontal" style="--y: 50%"></div>
+                <div class="grid-line horizontal" style="--y: 80%"></div>
+                <div class="grid-line vertical" style="--x: 25%"></div>
+                <div class="grid-line vertical" style="--x: 50%"></div>
+                <div class="grid-line vertical" style="--x: 75%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Effects -->
+    <audio id="scanSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRvIBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU4BAABBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMdBCcBAAA=" type="audio/wav">
+    </audio>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50
+        });
+
+        // Global variables for animations
+        let isScanning = false;
+        let scanningInterval;
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 60;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 50);
+            });
+        }
+
+        // Start counter animation when page loads
+        setTimeout(animateCounters, 1000);
+
+        // Global Scan Function
+        function startGlobalScan() {
+            if (isScanning) return;
+            
+            isScanning = true;
+            const scanBeam = document.getElementById('globalScanBeam');
+            const scanSound = document.getElementById('scanSound');
+            
+            // Play scan sound
+            scanSound.play().catch(e => console.log('Audio play failed:', e));
+            
+            // Show scan beam
+            scanBeam.style.display = 'block';
+            
+            // Animate modules
+            const modules = document.querySelectorAll('.detection-module');
+            modules.forEach((module, index) => {
+                setTimeout(() => {
+                    module.classList.add('scanning');
+                    setTimeout(() => {
+                        module.classList.remove('scanning');
+                        module.classList.add('scanned');
+                    }, 2000);
+                }, index * 500);
+            });
+            
+            // Hide scan beam after animation
+            setTimeout(() => {
+                scanBeam.style.display = 'none';
+                isScanning = false;
+                
+                // Reset modules
+                setTimeout(() => {
+                    modules.forEach(module => {
+                        module.classList.remove('scanned');
+                    });
+                }, 1000);
+            }, 4000);
+        }
+
+        // Image Upload Simulation
+        function triggerImageUpload() {
+            const uploadZone = document.querySelector('.image-module .upload-zone');
+            const scanViz = document.getElementById('imageScanViz');
+            const result = document.getElementById('imageResult');
+            
+            uploadZone.style.display = 'none';
+            scanViz.style.display = 'block';
+            
+            // Animate grid cells
+            const cells = scanViz.querySelectorAll('.grid-cell');
+            cells.forEach((cell, index) => {
+                setTimeout(() => {
+                    cell.classList.add('scanning');
+                    setTimeout(() => {
+                        cell.classList.add('analyzed');
+                    }, 300);
+                }, index * 100);
+            });
+            
+            // Show result after scan
+            setTimeout(() => {
+                scanViz.style.display = 'none';
+                result.style.display = 'block';
+            }, 3000);
+        }
+
+        // Video Upload Simulation
+        function triggerVideoUpload() {
+            const uploadZone = document.querySelector('.video-module .upload-zone');
+            const scanViz = document.getElementById('videoScanViz');
+            const result = document.getElementById('videoResult');
+            
+            uploadZone.style.display = 'none';
+            scanViz.style.display = 'block';
+            
+            // Animate progress bar
+            const progressFill = scanViz.querySelector('.progress-fill');
+            progressFill.style.width = '100%';
+            
+            // Animate frame markers
+            const markers = scanViz.querySelectorAll('.frame-marker');
+            markers.forEach((marker, index) => {
+                setTimeout(() => {
+                    marker.classList.add('analyzed');
+                }, index * 400);
+            });
+            
+            // Show result
+            setTimeout(() => {
+                scanViz.style.display = 'none';
+                result.style.display = 'block';
+                
+                // Animate confidence meter
+                const meter = result.querySelector('.meter-progress');
+                setTimeout(() => {
+                    meter.style.strokeDashoffset = '25';
+                }, 100);
+            }, 2500);
+        }
+
+        // Navigation smooth scrolling
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(item.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Button ripple effects
+        document.querySelectorAll('.futuristic-btn, .neon-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = this.querySelector('.btn-ripple, .btn-waves');
+                if (ripple) {
+                    ripple.style.animation = 'none';
+                    ripple.offsetHeight; // Trigger reflow
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+                }
+            });
+        });
+
+        // Global scan button
+        document.getElementById('scanAllBtn').addEventListener('click', startGlobalScan);
+
+        // Matrix rain effect
+        function createMatrixRain() {
+            const columns = document.querySelectorAll('.matrix-column');
+            columns.forEach(column => {
+                const chars = '01';
+                let content = '';
+                for (let i = 0; i < 20; i++) {
+                    content += chars[Math.floor(Math.random() * chars.length)];
+                }
+                column.textContent = content;
+            });
+        }
+
+        // Initialize matrix rain
+        createMatrixRain();
+        setInterval(createMatrixRain, 100);
+
+        // Threat radar animation
+        function animateThreatRadar() {
+            const radar = document.querySelector('.radar-sweep');
+            if (radar) {
+                radar.style.animation = 'radarSweep 3s linear infinite';
+            }
+        }
+
+        // Initialize animations
+        setTimeout(animateThreatRadar, 2000);
+
+        // Chart initialization (placeholder)
+        if (typeof Chart !== 'undefined') {
+            const ctx = document.getElementById('accuracyChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['1h', '2h', '3h', '4h', '5h', '6h'],
+                        datasets: [{
+                            label: 'Accuracy',
+                            data: [95, 97, 96, 98, 97, 97],
+                            borderColor: '#00d4ff',
+                            backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { 
+                                beginAtZero: false,
+                                min: 90,
+                                max: 100,
+                                grid: { color: 'rgba(0, 212, 255, 0.2)' },
+                                ticks: { color: '#00d4ff' }
+                            },
+                            x: {
+                                grid: { color: 'rgba(0, 212, 255, 0.2)' },
+                                ticks: { color: '#00d4ff' }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

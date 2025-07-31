@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INDsafe.ai - India's AI Shield Against Deepfakes. Advanced AI-powered deepfake detection for images, videos, audio, and text to protect digital truth">
+    <title>INDsafe.ai - Futuristic Deepfake Detection Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <!-- Cyberpunk Background -->
+    <div class="cyberpunk-bg">
+        <div class="stars-layer">
+            <div class="stars stars-small"></div>
+            <div class="stars stars-medium"></div>
+            <div class="stars stars-large"></div>
+        </div>
+        <div class="matrix-particles"></div>
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <div class="neural-grid"></div>
+    </div>
+
+    <!-- Minimalist Navigation -->
+    <nav class="minimal-nav">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='/'">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="INDsafe.ai Logo" class="logo-image">
+                <span>INDsafe.ai</span>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="#detection">Detection</a>
+                <a href="#pricing">Pricing</a>
+                <a href="/about">About Us</a>
+                <a href="#contact">Contact</a>
+                <button class="get-started-btn" onclick="window.open('/image-detection', '_blank')">Get Started</button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+                 <div class="mobile-menu">
+             <a href="/" class="active">Home</a>
+             <a href="#detection">Detection</a>
+             <a href="#pricing">Pricing</a>
+             <a href="/about">About Us</a>
+             <a href="#contact">Contact</a>
+             <button class="get-started-btn" onclick="window.open('/image-detection', '_blank')">Get Started</button>
+         </div>
+    </nav>
+
+    <!-- Sliding Text Marquee -->
+    <div class="sliding-text">
+        <span>⚠️ This is just a Demo Model of our Project it doesn't Resemble our real Model, its functinalities works on api while our real model works on the trained model which we have build on our own. Take it as a Demo for your better Understanding as a refrence only!! ⚠️</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="hero-badge">
+                    <div class="pulse-dot"></div>
+                    <span>AI POWERED DEEPFAKE DETECTION</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="glitch-text" data-text="INDsafe.ai">INDsafe.ai</span>
+                    <br>
+                    <span class="gradient-text">India's AI Shield</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Advanced neural networks detecting synthetic media across images, videos, audio, and text with quantum-level precision and real-time analysis.
+                </p>
+
+                <!-- Main CTA Buttons -->
+                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <button class="futuristic-cta primary" onclick="window.open('/image-detection', '_blank')">
+                        <div class="cta-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <span>Launch AI Detector</span>
+                        <div class="cta-glow"></div>
+                        <div class="cta-particles"></div>
+                    </button>
+
+                    <button class="futuristic-cta secondary">
+                        <div class="cta-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <span>Download Android App</span>
+                        <div class="cta-glow"></div>
+                        <div class="cta-particles"></div>
+                    </button>
+
+                    <button class="futuristic-cta tertiary">
+                        <div class="cta-icon">
+                            <i class="fab fa-chrome"></i>
+                        </div>
+                        <span>Get Chrome Extension</span>
+                        <div class="cta-glow"></div>
+                        <div class="cta-particles"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" data-aos="fade-up">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Watch our AI analyze and detect deepfakes in real-time</p>
+            </div>
+
+            <div class="detection-demo">
+                <!-- Video Demo Container -->
+                <div class="demo-container">
+                    <div class="demo-screen">
+                        <video id="demoVideo" autoplay muted preload="auto">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="scan-overlay">
+                            <div class="scan-line"></div>
+                            <div class="scan-grid">
+                                <div class="grid-dot" style="--x: 20%; --y: 30%"></div>
+                                <div class="grid-dot" style="--x: 60%; --y: 20%"></div>
+                                <div class="grid-dot" style="--x: 40%; --y: 70%"></div>
+                                <div class="grid-dot" style="--x: 80%; --y: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Flow -->
+                    <div class="analysis-flow">
+                        <div class="flow-step" id="step1">
+                            <div class="step-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h3>Input Analysis</h3>
+                            <p>AI scans the media</p>
+                            <div class="step-glow"></div>
+                        </div>
+
+                        <div class="flow-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-particles"></div>
+                        </div>
+
+                        <div class="flow-step" id="step2">
+                            <div class="step-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3>Feature Extraction</h3>
+                            <p>Neural network processing</p>
+                            <div class="step-glow"></div>
+                            <div class="circuit-overlay">
+                                <div class="circuit-line c1"></div>
+                                <div class="circuit-line c2"></div>
+                                <div class="circuit-line c3"></div>
+                            </div>
+                        </div>
+
+                        <div class="flow-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-particles"></div>
+                        </div>
+
+                        <div class="flow-step" id="step3">
+                            <div class="step-icon result-icon">
+                                <i class="fas fa-shield-check"></i>
+                            </div>
+                            <h3>Detection Result</h3>
+                            <div class="result-display">
+                                <span class="result-text" id="resultText">ANALYZING...</span>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="confidenceFill"></div>
+                                </div>
+                            </div>
+                            <div class="step-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accuracy Stats Section -->
+    <section class="accuracy-section" data-aos="fade-up">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Detection Accuracy</h2>
+                <p class="section-subtitle">Industry-leading precision across all media types</p>
+            </div>
+
+            <div class="accuracy-grid">
+                <div class="accuracy-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-image"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Image Detection</h3>
+                    <div class="accuracy-meter">
+                        <div class="meter-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="meter-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="meter-progress" data-accuracy="97"></circle>
+                            </svg>
+                            <div class="meter-text">
+                                <span class="percentage">97%</span>
+                                <span class="label">Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="accuracy-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-video"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Video Detection</h3>
+                    <div class="accuracy-meter">
+                        <div class="meter-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="meter-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="meter-progress" data-accuracy="94"></circle>
+                            </svg>
+                            <div class="meter-text">
+                                <span class="percentage">94%</span>
+                                <span class="label">Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="accuracy-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon">
+                        <i class="fas fa-microphone"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Audio Detection</h3>
+                    <div class="accuracy-meter">
+                        <div class="meter-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="meter-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="meter-progress" data-accuracy="91"></circle>
+                            </svg>
+                            <div class="meter-text">
+                                <span class="percentage">91%</span>
+                                <span class="label">Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="accuracy-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon">
+                        <i class="fas fa-newspaper"></i>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Text/News Detection</h3>
+                    <div class="accuracy-meter">
+                        <div class="meter-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="meter-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="meter-progress" data-accuracy="89"></circle>
+                            </svg>
+                            <div class="meter-text">
+                                <span class="percentage">89%</span>
+                                <span class="label">Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" data-aos="fade-up">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <p class="section-subtitle">Flexible pricing for individuals and enterprises</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card free" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>5 detections per day</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Image analysis only</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic support</span>
+                        </div>
+                        <div class="feature disabled">
+                            <i class="fas fa-times"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    <button class="plan-button">
+                        <span>Get Started</span>
+                        <div class="button-glow"></div>
+                    </button>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="pricing-card premium featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>Premium</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">999</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited detections</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>All media types</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    <button class="plan-button featured">
+                        <span>Choose Premium</span>
+                        <div class="button-glow"></div>
+                    </button>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="pricing-card custom" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Custom</h3>
+                        <div class="price">
+                            <span class="amount">Enterprise</span>
+                            <span class="period">pricing</span>
+                        </div>
+                    </div>
+                    <div class="card-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom integration</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>White-label solution</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>SLA guarantee</span>
+                        </div>
+                    </div>
+                    <button class="plan-button">
+                        <span>Contact Sales</span>
+                        <div class="button-glow"></div>
+                    </button>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="futuristic-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-virus"></i>
+                            <div class="logo-pulse"></div>
+                        </div>
+                        <span class="logo-text">INDsafe.ai</span>
+                    </div>
+                    <p class="brand-description">
+                        India's most advanced AI-powered deepfake detection platform, protecting digital truth with quantum-level precision.
+                    </p>
+                    <div class="made-in-india">
+                        <span class="flag">🇮🇳</span>
+                        <span>Proudly Made in India</span>
+                        <div class="badge-glow"></div>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#detection">Detection</a>
+                        <a href="#api">API</a>
+                        <a href="#mobile">Mobile App</a>
+                        <a href="#extension">Extension</a>
+                    </div>
+                                         <div class="link-group">
+                         <h4>Company</h4>
+                         <a href="/about">About Us</a>
+                         <a href="#careers">Careers</a>
+                         <a href="#press">Press</a>
+                         <a href="#contact">Contact</a>
+                     </div>
+                    <div class="link-group">
+                        <h4>Legal</h4>
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#security">Security</a>
+                        <a href="#compliance">Compliance</a>
+                    </div>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@indsafe.ai</span>
+                        </div>
+                                                 <div class="contact-item">
+                             <i class="fas fa-phone"></i>
+                             <span>+91 6200375091</span>
+                         </div>
+                         <div class="contact-item">
+                             <i class="fas fa-map-marker-alt"></i>
+                             <span>Bihar, India</span>
+                         </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            <div class="social-glow"></div>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <div class="social-glow"></div>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <div class="social-glow"></div>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-discord"></i>
+                            <div class="social-glow"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <span>&copy; 2025 INDsafe.ai. All rights reserved.</span>
+                </div>
+                <div class="footer-badges">
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>SSL Secured</span>
+                    </div>
+                    <div class="iso-badge">
+                        <i class="fas fa-certificate"></i>
+                        <span>ISO 27001</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50
+        });
+
+        // --- Corrected Video Control System ---
+
+        let real = 0; // 0 means not played, 1 means played
+        let fake = 0; // 0 means not played, 1 means played
+        let currentVideoType = '';
+        let isAnimationRunning = false;
+
+        const videoSources = {
+            fake: "{{ url_for('static', filename='uploads/videos/demo-fake.mp4') }}",
+            real: "{{ url_for('static', filename='uploads/videos/demo-real.mp4') }}"
+        };
+
+        /**
+         * The main control function that creates a robust loop.
+         * It plays a video and, upon successful playback, triggers the animation.
+         */
+        function runVideoSequence() {
+            const video = document.getElementById('demoVideo');
+            if (!video) {
+                console.error("Video element not found.");
+                return;
+            }
+
+            // 1. Choose which video to play based on flags
+            if (real === 0) {
+                currentVideoType = 'real';
+                video.src = videoSources.real;
+                real = 1;
+                fake = 0;
+            } else { // If real has played, play fake
+                currentVideoType = 'fake';
+                video.src = videoSources.fake;
+                fake = 1;
+                real = 0;
+            }
+            console.log(`Attempting to play ${currentVideoType.toUpperCase()} video.`);
+
+            // 2. Play the video and handle the promise
+            video.load();
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // 3. On successful playback, start the animation
+                    console.log(`✓ Playback started for ${currentVideoType.toUpperCase()}.`);
+                    startAnimation();
+                }).catch(error => {
+                    console.error(`✗ Failed to play video:`, error);
+                    // If play fails (e.g., browser policy), wait and try the loop again
+                    setTimeout(runVideoSequence, 3000);
+                });
+            }
+        }
+
+        /**
+         * Controls the visual animation steps.
+         * When the animation finishes, it calls the main control function to start the next video.
+         */
+        function startAnimation() {
+            if (isAnimationRunning) return;
+            isAnimationRunning = true;
+
+            const steps = ['step1', 'step2', 'step3'];
+            const resultText = document.getElementById('resultText');
+            const confidenceFill = document.getElementById('confidenceFill');
+
+            // Reset UI elements for the new animation
+            steps.forEach(stepId => document.getElementById(stepId)?.classList.remove('active'));
+            resultText.textContent = 'ANALYZING...';
+            resultText.className = 'result-text';
+            confidenceFill.style.width = '0%';
+            confidenceFill.className = 'confidence-fill';
+
+            let stepIndex = 0;
+
+            function nextStep() {
+                if (stepIndex < steps.length) {
+                    document.getElementById(steps[stepIndex])?.classList.add('active');
+
+                    // On the final step, calculate and display the result
+                    if (stepIndex === steps.length - 1) {
+                        setTimeout(() => {
+                            if (currentVideoType === 'fake') {
+                                resultText.textContent = 'FAKE';
+                                resultText.classList.add('fake');
+                                confidenceFill.style.width = '87%';
+                                confidenceFill.classList.add('fake');
+                            } else { // 'real'
+                                resultText.textContent = 'REAL';
+                                resultText.classList.add('real');
+                                confidenceFill.style.width = '96%';
+                                confidenceFill.classList.add('real');
+                            }
+                        }, 1000);
+                    }
+                    stepIndex++;
+                    setTimeout(nextStep, 2000); // Delay between steps
+                } else {
+                    // Animation is complete, reset the lock
+                    isAnimationRunning = false;
+                    console.log(`Animation for ${currentVideoType.toUpperCase()} complete.`);
+                    // After a pause, trigger the next video sequence
+                    setTimeout(runVideoSequence, 4000);
+                }
+            }
+
+            nextStep(); // Start the animation steps
+        }
+
+        // --- Other Initialization Functions ---
+
+        function initAccuracyMeters() {
+            const meters = document.querySelectorAll('.meter-progress');
+            meters.forEach(meter => {
+                const accuracy = meter.getAttribute('data-accuracy');
+                const circumference = 2 * Math.PI * 45; // r=45
+                const offset = circumference - (accuracy / 100) * circumference;
+
+                meter.style.strokeDasharray = circumference;
+                meter.style.strokeDashoffset = circumference; // Start at 0%
+                setTimeout(() => {
+                    meter.style.strokeDashoffset = offset; // Animate to target
+                }, 500);
+            });
+        }
+
+        function initGlitchEffect() {
+            const glitchText = document.querySelector('.glitch-text');
+            if (glitchText) {
+                setInterval(() => {
+                    glitchText.classList.add('glitch-active');
+                    setTimeout(() => glitchText.classList.remove('glitch-active'), 200);
+                }, 3000);
+            }
+        }
+        
+        // --- Main Initializer ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded. Initializing all components.");
+            
+            // Logo image error handling
+            const logoImage = document.querySelector('.logo-image');
+            if (logoImage) {
+                logoImage.addEventListener('error', function() {
+                    console.log('Logo image failed to load, using fallback');
+                    this.style.display = 'none';
+                    // Create fallback icon
+                    const fallbackIcon = document.createElement('i');
+                    fallbackIcon.className = 'fas fa-shield-alt';
+                    fallbackIcon.style.fontSize = '2rem';
+                    fallbackIcon.style.color = 'var(--neon-blue)';
+                    this.parentNode.insertBefore(fallbackIcon, this);
+                });
+                
+                logoImage.addEventListener('load', function() {
+                    console.log('Logo image loaded successfully');
+                });
+            }
+            
+            initAccuracyMeters();
+            initGlitchEffect();
+            // You can add other init functions like initCTAEffects() here if needed.
+
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', () => {
+                    mobileToggle.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+                
+                // Close mobile menu when clicking on links
+                mobileMenu.querySelectorAll('a, button').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileToggle.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Kick off the very first video sequence. The loop is self-sustaining from here.
+            runVideoSequence();
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

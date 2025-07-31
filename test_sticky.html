@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Note Test</title>
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .test-content {
+            padding: 20px;
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                Truth Shield
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sticky Demo Notice -->
+    <div id="demo-sticky-note">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span style="font-size:24px;font-weight:800;color:#faad14;margin-left:12px;">DEMO NOTICE:</span>
+        <span style="font-size:18px;font-weight:700;color:#ad8b00;margin-left:18px;">This is a Demo Model built using API key, it doesn't resemble our real model, it is just a demo model for your better understanding. This is how our original model look like but we have integrated our own trained models for the output and accuracy while this is only a Demo using AI API. It doesn't give any assured result. <span style="color:#d48806;font-size:20px;font-weight:900;">It's only a DEMO.</span></span>
+    </div>
+    
+    <!-- Test Content -->
+    <div class="test-content">
+        <h1>Sticky Note Test Page</h1>
+        <p>If you can see this content, the sticky note should be visible above.</p>
+        <p>The sticky note should appear between the navbar and this content.</p>
+        <p>If you don't see the sticky note, there might be a CSS issue.</p>
+    </div>
+</body>
+</html> 

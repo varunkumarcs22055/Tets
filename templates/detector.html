@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDsafe.ai - AI Deepfake Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indsafe.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cyberpunk Background -->
+    <div class="cyberpunk-bg">
+        <div class="matrix-grid"></div>
+        <div class="floating-particles"></div>
+        <div class="neural-network"></div>
+    </div>
+
+    <!-- INDsafe.ai Detection Interface -->
+    <div id="dashboard" class="page-view active">
+        <!-- Updated INDsafe.ai Navigation -->
+        <nav class="indsafe-nav">
+            <div class="nav-container">
+                <div class="logo-section" onclick="window.location.href='/'">
+                    <div class="logo-icon">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="INDsafe.ai Logo" class="logo-image">
+                    </div>
+                    <span class="logo-text">INDsafe.ai</span>
+                    <div class="india-accent"></div>
+                </div>
+                
+                <div class="nav-tabs">
+                    <button class="nav-tab active" data-tab="image">
+                        <i class="fas fa-image"></i>
+                        <span>IMAGES</span>
+                    </button>
+                    <button class="nav-tab" data-tab="video">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEOS</span>
+                    </button>
+                    <button class="nav-tab" data-tab="audio">
+                        <i class="fas fa-microphone"></i>
+                        <span>AUDIO</span>
+                    </button>
+                    <button class="nav-tab" data-tab="news">
+                        <i class="fas fa-newspaper"></i>
+                        <span>NEWS ANALYSIS</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Tab Content Areas -->
+        <div class="tab-content">
+            
+            <!-- IMAGE DETECTION TAB -->
+            <div id="image-tab" class="tab-pane active">
+            <!-- Header Section -->
+            <div class="detection-header">
+                <div class="image-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h1 class="page-title">Image Deepfake Detection</h1>
+                <p class="page-description">
+                    Upload images or use your webcam to detect AI-generated and manipulated content with our advanced detection algorithms
+                </p>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Detection Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">19K+</div>
+                    <div class="stat-label">Images Analyzed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2s</div>
+                    <div class="stat-label">Processing Time</div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="upload-area" id="imageUpload">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drop your image here or click to upload</h3>
+                    <p>Supported formats: JPG, PNG, WebP, BMP (Max 10MB)</p>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <div class="upload-buttons">
+                        <button class="upload-btn primary">Choose File</button>
+                        <button class="upload-btn secondary" id="webcamBtn">
+                            <i class="fas fa-camera"></i>
+                            Use Webcam
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Section -->
+            <div class="analysis-section" id="analysisSection" style="display: none;">
+                <div class="image-preview">
+                    <img id="previewImage" src="" alt="Preview">
+                    <div class="analysis-overlay">
+                        <div class="scan-grid"></div>
+                        <div class="detection-markers"></div>
+                    </div>
+                </div>
+                
+                <div class="analysis-controls">
+                    <button class="analyze-btn" id="analyzeBtn">
+                        <i class="fas fa-search"></i>
+                        <span>Analyze Image</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="result-header">
+                    <h3>Detection Results</h3>
+                    <div class="analysis-time">
+                        <i class="fas fa-clock"></i>
+                        <span id="processingTime">1.8s</span>
+                    </div>
+                </div>
+                
+                <div class="result-content">
+                    <div class="verdict-display">
+                        <div class="verdict-icon" id="verdictIcon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <div class="verdict-details">
+                            <div class="verdict-text" id="verdictText">AUTHENTIC</div>
+                            <div class="verdict-subtitle">This image appears to be genuine</div>
+                        </div>
+                    </div>
+                    
+                    <div class="confidence-section">
+                        <div class="confidence-label">Confidence Level</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill" style="width: 94%"></div>
+                            <div class="confidence-percentage">94%</div>
+                        </div>
+                    </div>
+
+                    <!-- Heatmap Visualization -->
+                    <div class="heatmap-section">
+                        <div class="heatmap-header">
+                            <h4><i class="fas fa-fire"></i> Original vs AI Attention Analysis</h4>
+                            <p>Compare the original image with AI attention heatmap showing suspicious regions</p>
+                        </div>
+                        <div class="heatmap-container">
+                            <canvas id="heatmapCanvas" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="technical-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Algorithm:</span>
+                            <span class="detail-value">XceptionNet-V4</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Model Version:</span>
+                            <span class="detail-value">2024.12.1</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Analysis Date:</span>
+                            <span class="detail-value" id="analysisDate"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn secondary" id="downloadReportBtn">
+                        <i class="fas fa-download"></i>
+                        Download Report
+                    </button>
+                    <button class="action-btn primary" onclick="location.reload()">
+                        <i class="fas fa-upload"></i>
+                        Analyze Another
+                    </button>
+                </div>
+            </div>
+            </div>
+            <!-- END IMAGE TAB -->
+            
+            <!-- VIDEO DETECTION TAB -->
+            <div id="video-tab" class="tab-pane">
+                <div class="detection-header">
+                    <div class="video-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h1 class="page-title">Video Deepfake Detection</h1>
+                    <p class="page-description">
+                        Upload videos to detect AI-generated and manipulated video content using advanced frame analysis
+                    </p>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">94%</div>
+                        <div class="stat-label">Video Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30fps</div>
+                        <div class="stat-label">Analysis Speed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4K</div>
+                        <div class="stat-label">Max Resolution</div>
+                    </div>
+                </div>
+
+                <!-- Video Upload Section -->
+                <div class="upload-section">
+                    <div class="upload-area" id="videoUpload">
+                        <div class="upload-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Upload Video File</h3>
+                        <p>Drag and drop a video file or click to browse</p>
+                        <p style="color: #888; font-size: 0.9rem;">Supported: MP4, AVI, MOV, MKV (Max: 100MB)</p>
+                        
+                        <input type="file" id="videoInput" accept="video/*" style="display: none;">
+                        
+                        <div class="upload-buttons">
+                            <button class="upload-btn primary">
+                                <i class="fas fa-upload"></i>
+                                Choose Video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Analysis Section -->
+                <div class="analysis-section" id="videoAnalysisSection" style="display: none;">
+                    <div class="video-preview">
+                        <video id="previewVideo" controls style="max-width: 100%; max-height: 400px; border-radius: 8px;"></video>
+                        <div class="analysis-overlay">
+                            <div class="scan-grid"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-controls">
+                        <button class="analyze-btn" id="analyzeVideoBtn">
+                            <i class="fas fa-search"></i>
+                            <span>Analyze Video</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Results Section -->
+                <div class="results-section" id="videoResultsSection" style="display: none;">
+                    <div class="result-header">
+                        <h3>Video Analysis Results</h3>
+                        <div class="analysis-time">
+                            <i class="fas fa-clock"></i>
+                            <span id="videoProcessingTime">Processing...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verdict-display" id="videoVerdictDisplay">
+                        <div class="verdict-icon" id="videoVerdictIcon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <div class="verdict-details">
+                            <div class="verdict-text" id="videoVerdictText">ANALYZING...</div>
+                            <div class="verdict-subtitle">Please wait while we process your video</div>
+                        </div>
+                    </div>
+
+                    <div class="confidence-section">
+                        <div class="confidence-label">Overall Confidence Level</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="videoConfidenceFill" style="width: 0%"></div>
+                            <div class="confidence-percentage" id="videoConfidencePercentage">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn secondary" onclick="downloadVideoReport()">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                        <button class="action-btn primary" onclick="resetVideoInterface()">
+                            <i class="fas fa-upload"></i>
+                            Analyze Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- END VIDEO TAB -->
+            
+            <!-- AUDIO DETECTION TAB -->
+            <div id="audio-tab" class="tab-pane">
+                <div class="detection-header">
+                    <div class="audio-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h1 class="page-title">Audio Deepfake Detection</h1>
+                    <p class="page-description">
+                        Upload audio files to detect AI-generated voices and manipulated audio content
+                    </p>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">96%</div>
+                        <div class="stat-label">Audio Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Real-time</div>
+                        <div class="stat-label">Analysis Speed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">48kHz</div>
+                        <div class="stat-label">Max Quality</div>
+                    </div>
+                </div>
+
+                <!-- Audio Upload Section -->
+                <div class="upload-section">
+                    <div class="upload-area" id="audioUpload">
+                        <div class="upload-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>Upload Audio File</h3>
+                        <p>Drag and drop an audio file or click to browse</p>
+                        <p style="color: #888; font-size: 0.9rem;">Supported: MP3, WAV, AAC, OGG (Max: 50MB)</p>
+                        
+                        <input type="file" id="audioInput" accept="audio/*" style="display: none;">
+                        
+                        <div class="upload-buttons">
+                            <button class="upload-btn primary">
+                                <i class="fas fa-upload"></i>
+                                Choose Audio
+                            </button>
+                            <button class="upload-btn secondary" id="recordAudioBtn">
+                                <i class="fas fa-microphone"></i>
+                                Record Audio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audio Analysis Section -->
+                <div class="analysis-section" id="audioAnalysisSection" style="display: none;">
+                    <div class="audio-preview">
+                        <audio id="previewAudio" controls style="width: 100%; margin-bottom: 1rem;"></audio>
+                        <div class="waveform-container">
+                            <canvas id="waveformCanvas" width="600" height="150" style="width: 100%; background: #1a1a2e; border-radius: 8px;"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-controls">
+                        <button class="analyze-btn" id="analyzeAudioBtn">
+                            <i class="fas fa-search"></i>
+                            <span>Analyze Audio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Audio Results Section -->
+                <div class="results-section" id="audioResultsSection" style="display: none;">
+                    <div class="result-header">
+                        <h3>Audio Analysis Results</h3>
+                        <div class="analysis-time">
+                            <i class="fas fa-clock"></i>
+                            <span id="audioProcessingTime">Processing...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verdict-display" id="audioVerdictDisplay">
+                        <div class="verdict-icon" id="audioVerdictIcon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <div class="verdict-details">
+                            <div class="verdict-text" id="audioVerdictText">ANALYZING...</div>
+                            <div class="verdict-subtitle">Please wait while we process your audio</div>
+                        </div>
+                    </div>
+
+                    <div class="confidence-section">
+                        <div class="confidence-label">Voice Authenticity Confidence</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="audioConfidenceFill" style="width: 0%"></div>
+                            <div class="confidence-percentage" id="audioConfidencePercentage">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn secondary" onclick="downloadAudioReport()">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                        <button class="action-btn primary" onclick="resetAudioInterface()">
+                            <i class="fas fa-upload"></i>
+                            Analyze Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- END AUDIO TAB -->
+            
+            <!-- NEWS ANALYSIS TAB -->
+            <div id="news-tab" class="tab-pane">
+                <div class="detection-header">
+                    <div class="news-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h1 class="page-title">News Content Analysis</h1>
+                    <p class="page-description">
+                        Analyze text content and news articles for AI-generated text, bias detection, and credibility assessment
+                    </p>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">93%</div>
+                        <div class="stat-label">Text Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Instant</div>
+                        <div class="stat-label">Analysis Speed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                </div>
+
+                <!-- Text Input Section -->
+                <div class="upload-section">
+                    <div class="text-input-area">
+                        <h3>Enter Text or URL for Analysis</h3>
+                        <div class="input-tabs">
+                            <button class="input-tab active" data-input="text">
+                                <i class="fas fa-edit"></i>
+                                Text Input
+                            </button>
+                            <button class="input-tab" data-input="url">
+                                <i class="fas fa-link"></i>
+                                URL Analysis
+                            </button>
+                        </div>
+                        
+                        <div class="text-input-container active" id="textInputContainer">
+                            <textarea id="textInput" placeholder="Paste your text content here for analysis..." 
+                                     style="width: 100%; min-height: 300px; padding: 1rem; border-radius: 8px; border: 1px solid #333; background: #1a1a2e; color: white; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                        </div>
+                        
+                        <div class="url-input-container" id="urlInputContainer" style="display: none;">
+                            <input type="url" id="urlInput" placeholder="Enter news article or webpage URL..." 
+                                   style="width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #333; background: #1a1a2e; color: white; font-family: 'Inter', sans-serif;">
+                            <button class="fetch-btn" id="fetchUrlBtn" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #00d4ff, #b347ff); color: white; border: none; border-radius: 8px; cursor: pointer;">
+                                <i class="fas fa-download"></i>
+                                Fetch Content
+                            </button>
+                        </div>
+                        
+                        <div class="analysis-controls" style="margin-top: 1.5rem;">
+                            <button class="analyze-btn" id="analyzeTextBtn">
+                                <i class="fas fa-search"></i>
+                                <span>Analyze Content</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Results Section -->
+                <div class="results-section" id="textResultsSection" style="display: none;">
+                    <div class="result-header">
+                        <h3>Content Analysis Results</h3>
+                        <div class="analysis-time">
+                            <i class="fas fa-clock"></i>
+                            <span id="textProcessingTime">Processing...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verdict-display" id="textVerdictDisplay">
+                        <div class="verdict-icon" id="textVerdictIcon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <div class="verdict-details">
+                            <div class="verdict-text" id="textVerdictText">ANALYZING...</div>
+                            <div class="verdict-subtitle">Please wait while we process your content</div>
+                        </div>
+                    </div>
+
+                    <div class="confidence-section">
+                        <div class="confidence-label">Content Authenticity Confidence</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="textConfidenceFill" style="width: 0%"></div>
+                            <div class="confidence-percentage" id="textConfidencePercentage">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-breakdown" style="margin: 2rem 0;">
+                        <h4>Analysis Breakdown</h4>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">AI Generation Likelihood:</span>
+                            <span class="breakdown-value" id="aiLikelihood">-</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Bias Detection:</span>
+                            <span class="breakdown-value" id="biasDetection">-</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Credibility Score:</span>
+                            <span class="breakdown-value" id="credibilityScore">-</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Language Quality:</span>
+                            <span class="breakdown-value" id="languageQuality">-</span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn secondary" onclick="downloadTextReport()">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                        <button class="action-btn primary" onclick="resetTextInterface()">
+                            <i class="fas fa-edit"></i>
+                            Analyze Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS TAB -->
+            
+        </div>
+        <!-- END TAB CONTENT -->
+    </div>
+
+    <script src="{{ url_for('static', filename='js/indsafe.js') }}"></script>
+</body>
+</html>

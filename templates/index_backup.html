@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INDsafe.ai - Advanced AI-powered deepfake detection for images, videos, and text to protect digital truth">
+    <title>INDsafe.ai - Advanced Deepfake Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <!-- Dark Futuristic Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='/'">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-virus"></i>
+                    <div class="logo-pulse"></div>
+                </div>
+                <span class="logo-text">INDsafe.ai</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="nav-link active">
+                    <span class="link-text">Home</span>
+                    <div class="link-glow"></div>
+                </a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link dropbtn">
+                        <span class="link-text">Modules</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                        <div class="link-glow"></div>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="/image-detection" class="dropdown-item" target="_blank">
+                            <i class="fas fa-image"></i>
+                            <div class="dropdown-text">
+                                <span class="item-title">Image Detection</span>
+                                <span class="item-desc">AI-powered image analysis</span>
+                            </div>
+                        </a>
+                        <a href="/video-detection" class="dropdown-item" target="_blank">
+                            <i class="fas fa-video"></i>
+                            <div class="dropdown-text">
+                                <span class="item-title">Video Detection</span>
+                                <span class="item-desc">Deepfake video analysis</span>
+                            </div>
+                        </a>
+                        <a href="http://localhost:3001/" class="dropdown-item" target="_blank">
+                            <i class="fas fa-file-text"></i>
+                            <div class="dropdown-text">
+                                <span class="item-title">Text Analysis</span>
+                                <span class="item-desc">Content authenticity check</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="#about" class="nav-link">
+                    <span class="link-text">About</span>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <span class="link-text">Contact</span>
+                    <div class="link-glow"></div>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-btn secondary">Login</a>
+                <a href="signup.html" class="nav-btn primary">Get Started</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content" data-aos="fade-up">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        AI SYSTEMS ONLINE
+                    </div>
+                    <h1 class="hero-title">AI That Defends<br><span class="gradient-text">Reality</span></h1>
+                    <p class="hero-description">Advanced neural networks that detect synthetic media, deepfakes, and manipulated content in real-time across all digital platforms.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary glow-hover" onclick="window.open('/image-detection', '_blank')">
+                            <span class="btn-text">Launch Detector</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                        <button class="btn-secondary" onclick="window.location.href='#extensions'">
+                            <i class="fab fa-chrome"></i>
+                            <span class="btn-text">Get Chrome Extension</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual" data-aos="fade-left">
+                    <div class="floating-panel">
+                        <div class="panel-header">
+                            <div class="panel-status">
+                                <span class="status-indicator active"></span>
+                                <span>SCANNING</span>
+                            </div>
+                            <div class="panel-progress">87%</div>
+                        </div>
+                        <div class="scan-grid">
+                            <div class="scan-cell"></div>
+                            <div class="scan-cell active"></div>
+                            <div class="scan-cell"></div>
+                            <div class="scan-cell active"></div>
+                            <div class="scan-cell"></div>
+                            <div class="scan-cell active"></div>
+                        </div>
+                        <div class="panel-result">
+                            <span class="result-label">VERDICT:</span>
+                            <span class="result-value authentic">AUTHENTIC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-background"></div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-card" data-aos="fade-up">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number"><span class="counter" data-target="1247">0</span>K</div>
+                        <div class="stat-label">Deepfakes Caught</div>
+                    </div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">
+                        <i class="fas fa-users-shield"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number"><span class="counter" data-target="89">0</span>M</div>
+                        <div class="stat-label">Users Protected</div>
+                    </div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number"><span class="counter" data-target="324">0</span>K</div>
+                        <div class="stat-label">Scans Today</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detection Modules Section -->
+        <section class="modules-section" id="services">
+            <div class="section-header">
+                <h2 class="section-title" data-aos="fade-up">Detection Modules</h2>
+                <p class="section-subtitle" data-aos="fade-up">Advanced AI systems designed to identify synthetic content across all media types</p>
+            </div>
+            
+            <div class="modules-grid">
+                <div class="module-card" data-aos="fade-up" data-aos-delay="100" onclick="window.open('/image-detection', '_blank')">
+                    <div class="module-glow"></div>
+                    <div class="module-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="module-title">Image Detection</h3>
+                    <p class="module-description">Analyze images for AI-generated content and manipulation artifacts with pixel-level precision.</p>
+                    <div class="module-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">98.7%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">&lt;2s</span>
+                            <span class="stat-label">Processing</span>
+                        </div>
+                    </div>
+                    <div class="module-overlay">
+                        <span class="launch-text">Launch Module</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="module-card" data-aos="fade-up" data-aos-delay="200" onclick="window.open('/video-detection', '_blank')">
+                    <div class="module-glow"></div>
+                    <div class="module-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="module-title">Video Detection</h3>
+                    <p class="module-description">Real-time deepfake detection in video streams with temporal consistency analysis.</p>
+                    <div class="module-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">96.3%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">&lt;5s</span>
+                            <span class="stat-label">Processing</span>
+                        </div>
+                    </div>
+                    <div class="module-overlay">
+                        <span class="launch-text">Launch Module</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="module-card" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='#audio'">
+                    <div class="module-glow"></div>
+                    <div class="module-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="module-title">Audio Detection</h3>
+                    <p class="module-description">Identify voice cloning and synthetic speech with advanced acoustic fingerprinting.</p>
+                    <div class="module-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">94.1%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">&lt;3s</span>
+                            <span class="stat-label">Processing</span>
+                        </div>
+                    </div>
+                    <div class="module-overlay">
+                        <span class="launch-text">Coming Soon</span>
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+
+                <div class="module-card" data-aos="fade-up" data-aos-delay="400" onclick="window.open('http://localhost:3001/', '_blank')">
+                    <div class="module-glow"></div>
+                    <div class="module-icon">
+                        <i class="fas fa-file-text"></i>
+                    </div>
+                    <h3 class="module-title">Text Detection</h3>
+                    <p class="module-description">Detect AI-generated text and misinformation using natural language processing.</p>
+                    <div class="module-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">97.5%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">&lt;1s</span>
+                            <span class="stat-label">Processing</span>
+                        </div>
+                    </div>
+                    <div class="module-overlay">
+                        <span class="launch-text">Launch Module</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2 class="cta-title">Ready to Defend Reality?</h2>
+                    <p class="cta-description">Join the fight against synthetic media with our advanced AI detection systems.</p>
+                    <div class="cta-buttons">
+                        <button class="btn-primary glow-hover large">
+                            <span class="btn-text">Launch Detector</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                        <button class="btn-secondary large" onclick="window.location.href='#extensions'">
+                            <i class="fab fa-chrome"></i>
+                            <span class="btn-text">Get Chrome Extension</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>INDsafe.ai</h3>
+                <p>Protecting digital integrity through advanced AI detection technology.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Image Detection</a></li>
+                    <li><a href="#">Video Analysis</a></li>
+                    <li><a href="#">Text Verification</a></li>
+                    <li><a href="#">API Access</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 INDsafe.ai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your browsing experience. By continuing to use our website, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-button accept">Accept All</button>
+                <button class="cookie-button customize">Customize</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

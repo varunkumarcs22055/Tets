@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INDsafe.ai - India's AI Shield Against Deepfakes. Advanced AI-powered deepfake detection for images, videos, audio, and text to protect digital truth">
+    <title>INDsafe.ai - India's AI Shield Against Deepfakes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <!-- Cyberpunk Navigation -->
+    <nav class="cyberpunk-navbar">
+        <div class="nav-container">
+            <div class="logo-section" onclick="window.location.href='/'">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-halved"></i>
+                    <div class="logo-pulse"></div>
+                </div>
+                <span class="logo-text">INDsafe.ai</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-item active">
+                    <span>Home</span>
+                    <div class="nav-glow"></div>
+                </a>
+                <a href="#services" class="nav-item">
+                    <span>Services</span>
+                    <div class="nav-glow"></div>
+                </a>
+                <a href="#how-it-works" class="nav-item">
+                    <span>How it Works</span>
+                    <div class="nav-glow"></div>
+                </a>
+                <a href="#contact" class="nav-item">
+                    <span>Contact</span>
+                    <div class="nav-glow"></div>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="cyber-btn secondary" onclick="window.open('/image-detection', '_blank')">
+                    <i class="fas fa-rocket"></i>
+                    <span>Launch Detector</span>
+                </button>
+                <button class="cyber-btn primary">
+                    <i class="fab fa-chrome"></i>
+                    <span>Get Extension</span>
+                </button>
+            </div>
+
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Hero Section - Left Side -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <div class="hero-badge" data-aos="fade-up">
+                    <span class="pulse-dot"></span>
+                    <span>AI DEFENSE SYSTEM ACTIVE</span>
+                </div>
+                
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                    India's AI Shield<br>
+                    <span class="gradient-text">Against Deepfakes</span>
+                </h1>
+                
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                    Advanced neural networks that detect synthetic media, deepfakes, and manipulated content across all digital platforms with unprecedented accuracy.
+                </p>
+
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                    <button class="cyber-btn-large primary glow-effect" onclick="window.open('/image-detection', '_blank')">
+                        <i class="fas fa-play"></i>
+                        <span>Launch Detector</span>
+                        <div class="btn-shimmer"></div>
+                    </button>
+                    <button class="cyber-btn-large secondary">
+                        <i class="fab fa-chrome"></i>
+                        <span>Get Extension</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detection Modules Grid - Right Side -->
+        <section class="modules-grid-section">
+            <div class="detection-modules" data-aos="fade-left">
+                <!-- Image Detection Module -->
+                <div class="module-card image-module" onclick="window.open('/image-detection', '_blank')">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <span class="module-label">Image</span>
+                    </div>
+                    <div class="module-glow-effect"></div>
+                    <div class="scan-animation">
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+
+                <!-- Audio Detection Module -->
+                <div class="module-card audio-module">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <span class="module-label">Audio</span>
+                    </div>
+                    <div class="module-glow-effect"></div>
+                    <div class="audio-waves">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <!-- Text Detection Module -->
+                <div class="module-card text-module" onclick="window.open('http://localhost:3001/', '_blank')">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-file-text"></i>
+                        </div>
+                        <span class="module-label">Text</span>
+                    </div>
+                    <div class="module-glow-effect"></div>
+                    <div class="text-scan">
+                        <div class="text-lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Detection Module (Large) -->
+                <div class="module-card video-module large" onclick="window.open('/video-detection', '_blank')">
+                    <div class="module-header">
+                        <div class="module-icon large">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="module-info">
+                            <span class="module-label">Video</span>
+                            <span class="module-sublabel">Deepfakes</span>
+                        </div>
+                    </div>
+                    <div class="module-glow-effect"></div>
+                    <div class="video-preview">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Deepfakes Module -->
+                <div class="module-card text-deepfakes-module">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="module-info">
+                            <span class="module-label">Text</span>
+                            <span class="module-sublabel">Deepfakes</span>
+                        </div>
+                    </div>
+                    <div class="module-glow-effect"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="analytics-section" data-aos="fade-up">
+            <div class="analytics-container">
+                <!-- Left Analytics Panel -->
+                <div class="analytics-panel">
+                    <div class="analytics-header">
+                        <div class="analytics-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span>Analytics</span>
+                    </div>
+                    <p class="analytics-desc">
+                        Real-time detection analytics and system performance metrics
+                    </p>
+                    
+                    <div class="accuracy-display">
+                        <div class="accuracy-label">Accuracy</div>
+                        <div class="accuracy-value">
+                            <span class="counter" data-target="85559">0</span>%
+                        </div>
+                        <div class="accuracy-sublabel">Total scans performed</div>
+                    </div>
+
+                    <div class="step-indicators">
+                        <div class="step-title">Step by Step</div>
+                        <div class="steps-grid">
+                            <div class="step-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="step-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="step-icon">
+                                <i class="fas fa-shield-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MatyMalts Section -->
+                <div class="matymalts-panel">
+                    <h3>MatyMalts</h3>
+                    <p>Latest detection reports and AI model performance metrics. Monitor the effectiveness of our deepfake detection systems.</p>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section" data-aos="fade-up">
+            <h2 class="section-title">How It Works</h2>
+            <div class="process-cards">
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Upload Step">
+                        <div class="process-glow"></div>
+                    </div>
+                    <div class="process-info">
+                        <h4>Upload Content</h4>
+                        <p>Securely upload your media files</p>
+                    </div>
+                </div>
+
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b077?w=100&h=100&fit=crop&crop=face" alt="Scan Step">
+                        <div class="process-glow"></div>
+                    </div>
+                    <div class="process-info">
+                        <h4>AI Analysis</h4>
+                        <p>Deep learning algorithms scan content</p>
+                    </div>
+                </div>
+
+                <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-avatar">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Result Step">
+                        <div class="process-glow"></div>
+                    </div>
+                    <div class="process-info">
+                        <h4>Get Results</h4>
+                        <p>Receive detailed authenticity report</p>
+                    </div>
+                </div>
+
+                <div class="process-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Protect Step">
+                        <div class="process-glow"></div>
+                    </div>
+                    <div class="process-info">
+                        <h4>Stay Protected</h4>
+                        <p>Continuous monitoring and alerts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section" data-aos="fade-up">
+            <h2 class="section-title">Pricing / Reward Plans</h2>
+            <div class="pricing-table">
+                <div class="pricing-card free" data-aos="fade-up" data-aos-delay="100">
+                    <div class="plan-header">
+                        <h3>Free</h3>
+                        <div class="plan-price">₹0</div>
+                        <div class="plan-period">per month</div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic image detection</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>5 scans per day</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Community support</span>
+                        </div>
+                    </div>
+                    <button class="plan-btn">Get Started</button>
+                </div>
+
+                <div class="pricing-card premium featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Premium</h3>
+                        <div class="plan-price">₹999</div>
+                        <div class="plan-period">per month</div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>All detection modules</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited scans</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    <button class="plan-btn primary">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card enterprise" data-aos="fade-up" data-aos-delay="300">
+                    <div class="plan-header">
+                        <h3>Enterprise</h3>
+                        <div class="plan-price">Custom</div>
+                        <div class="plan-period">pricing</div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom integration</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>White-label solution</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>SLA guarantee</span>
+                        </div>
+                    </div>
+                    <button class="plan-btn">Contact Sales</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <div class="social-container">
+                <div class="social-links">
+                    <a href="#" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>@INDsafe.ai</span>
+                        <div class="social-glow"></div>
+                    </a>
+                    <a href="#" class="social-link facebook">
+                        <i class="fab fa-facebook"></i>
+                        <span>@INDsafe.ai</span>
+                        <div class="social-glow"></div>
+                    </a>
+                    <a href="#" class="social-link twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>@INDsafe.ai</span>
+                        <div class="social-glow"></div>
+                    </a>
+                    <a href="#" class="social-link linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        <span>@INDsafe.ai</span>
+                        <div class="social-glow"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="cyber-background">
+        <div class="grid-pattern"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="glow-orbs">
+            <div class="orb purple"></div>
+            <div class="orb blue"></div>
+            <div class="orb pink"></div>
+        </div>
+    </div>
+
+    <!-- AI Assistant Button -->
+    <div class="ai-assistant">
+        <button class="ai-btn">
+            <i class="fas fa-robot"></i>
+            <span>AI</span>
+            <div class="ai-pulse"></div>
+        </button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 50);
+            });
+        }
+
+        // Start counter animation when section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.accuracy-value'));
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(item.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
