@@ -9,3 +9,4 @@ reportlab
 opencv-python
 gunicorn
 tensorflow
+transformers
